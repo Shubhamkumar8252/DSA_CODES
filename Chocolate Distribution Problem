@@ -1,0 +1,22 @@
+
+class Solution {
+    public int findMinDiff(ArrayList<Integer> arr, int m) {
+        // your code here
+        int mini = Integer.MAX_VALUE;
+        int n = arr.size();
+        
+        if(n < m)
+        {
+            return -1;
+
+        }
+        
+        Collections.sort(arr);
+        for(int i =0 ; i+m-1 < n ;i++)
+        {
+            int curr = arr.get(i+m-1)-arr.get(i);
+            mini = Math.min(curr,mini);
+        }
+        return mini;
+    }
+}
