@@ -1,0 +1,40 @@
+class Solution {
+    public int nQueens(boolean[][] mat, int row){
+        if(row == mat.length) return 1;
+
+        // breadth -> cols
+        int ans = 0;
+
+        for(int col = 0; col < mat.length; col++){
+            if(isSafe(mat, row, col)) {
+                mat[row][col] = true;
+                ans += nQueens(mat, row + 1);
+                mat[row][col] = false; // backtracing last row se wps aate time row se queens ko hta denge
+            }
+        } 
+        return ans;
+    }
+    public boolean isSafe(boolean[][] mat, int row, int col){
+        int n = mat.length;
+
+        //up
+        for(int i = row; i >= 0; i--){
+            if(mat[i][col] == true) return false;
+        }
+
+        // UP right
+        for(int i = row, j = col; i >= 0 && j < n; i--, j++){
+            if(mat[i][j] == true) return false;
+        }
+
+        // UP left
+        for(int i = row, j = col; i >= 0 && j >= 0; i--, j--){
+            if(mat[i][j] == true) return false;
+        }
+        return true;
+    }
+    public int totalNQueens(int n) {
+        boolean[][] mat = new boolean[n][n];
+        return nQueens(mat, 0);
+    }
+}
