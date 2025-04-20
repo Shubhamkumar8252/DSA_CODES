@@ -1,0 +1,37 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        int start = 0; // Starting index se lekr end index tk ka ele Palindrom hai
+        int end = 1;  // end
+        int l = 0; int r = 0;
+
+        for(int i = 0; i<s.length(); i++){
+            l = i;
+            r=i+1;
+
+            while(l>=0 && r<s.length() && (s.charAt(l) == s.charAt(r))){  // even number of string 
+                if(r-l+1 > end){
+                    start = l;
+                    end = r-l+1;
+                }
+                l--;
+                r++;
+            }
+
+            l = i-1;
+            r = i+1;
+
+            while(l>=0 && r<s.length() && (s.charAt(l) == s.charAt(r))){  // odd number of string 
+                if(r-l+1 > end){
+                    start = l;
+                    end = r-l+1;
+                }
+                l--;
+                r++;
+            }
+        }
+        // for(int i =0; i< start+end; i++){
+        //     System.out.print(s.charAt(i));
+        //}
+         return s.substring(start, start+end);// Start se end tk ka string ko return kr diye
+    }
+}
