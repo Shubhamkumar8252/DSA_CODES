@@ -32,3 +32,26 @@ class Solution {
             return true;
 }
 }
+
+//By Using Stack
+
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        Stack<Integer> st = new Stack<>();
+        ListNode curr = head;
+        while(curr != null){
+            st.add(curr.val);
+            curr = curr.next;
+        }
+        curr = head;
+        while(curr != null){
+            if(st.peek() != curr.val){
+                return false;
+            }
+            st.pop();
+            curr = curr.next;
+        }
+        return true;
+    }
+}
