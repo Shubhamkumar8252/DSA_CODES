@@ -1,0 +1,45 @@
+class Solution {
+    public int largestRectangleArea(int[] heights) { 
+        int len = heights.length;
+        int nsr[] = new int[len];
+        int nsl[] = new int[len];
+        nsr[len-1] = len;
+        nsl[0] = -1;
+
+        //less from left
+        for(int i = 1; i<len; i++){
+            int idx = i-1;
+            while(idx >= 0){
+                if(heights[idx] >= heights[i]){
+                    idx = nsl[idx];
+                } else {
+                    break;
+                }
+            }
+            nsl[i] = idx;
+        }
+
+        //less from right
+        for(int i = len-2; i>=0; i--){
+            int idx = i+1;
+            while(idx < len) {
+                if(heights[idx] >= heights[i]){
+                    idx = nsr[idx];
+                } else{
+                    break;
+                }
+            }
+            nsr[i] = idx;
+        }
+
+        //Current Area : width = j - i - 1 = nsr[i] - nsl[i] - 1
+        int maxArea = 0;
+        for(int i=0; i<len; i++){
+            int height = heights[i];
+            int width = nsr[i] - nsl[i] -1;
+            int currArea = height * width;
+            maxArea = Math.max(maxArea, currArea);
+        }
+        return maxArea;
+    }
+}
