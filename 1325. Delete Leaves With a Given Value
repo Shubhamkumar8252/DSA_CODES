@@ -6,8 +6,8 @@ class Solution {
         root.right = removeLeafNodes(root.right, target);
 
         if(root.left == null && root.right == null && root.val == target){
-            return null;
+            return null; // if root eq to target then delete and return null
         }
-        return root;
+        return root; //if root not equal to target then return root
     }
 }
