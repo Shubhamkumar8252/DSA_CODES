@@ -1,5 +1,5 @@
 class Solution {
-    public boolean helpar(TreeNode r1, TreeNode r2){
+    public boolean helpar(TreeNode r1, TreeNode r2){ // yeha pe tree ko divide kr diye hai
         if(r1 == null && r2 == null) return true;
         if(r1 == null || r2 == null)  return false;
 
