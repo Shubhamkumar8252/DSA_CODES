@@ -1,0 +1,13 @@
+class Solution {
+    public boolean helpar(TreeNode r1, TreeNode r2){
+        if(r1 == null && r2 == null) return true;
+        if(r1 == null || r2 == null)  return false;
+
+        return (r1.val == r2.val && helpar(r1.left, r2.right) && helpar(r1.right, r2.left));
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root.left == null && root.right == null) return true;
+
+        return helpar(root.left, root.right);
+    }
+}
