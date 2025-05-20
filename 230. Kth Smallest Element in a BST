@@ -1,0 +1,15 @@
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> ll = new ArrayList<>();
+        inorder(root, ll);
+        return ll.get(k-1);
+    }
+    public void inorder(TreeNode root, ArrayList<Integer> ll){
+        if(root == null){
+            return;
+        }
+        inorder(root.left, ll);
+        ll.add(root.val);
+        inorder(root.right, ll);
+    }
+}
