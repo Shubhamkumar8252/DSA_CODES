@@ -1,0 +1,39 @@
+class CustomStack {
+    private Stack<Integer> s1;
+    private Stack<Integer> s2;
+    private int currSize;
+    private int mxSize;
+
+    public CustomStack(int maxSize) {
+        currSize =0;
+        mxSize = maxSize;
+        s1 = new Stack<>();
+        s2 = new Stack<>();
+    }
+    
+    public void push(int x) {
+        if(currSize < mxSize){
+            s1.push(x);
+            currSize++;
+        }
+    }
+    
+    public int pop() {
+        if(currSize == 0) return -1;
+        currSize--;
+        return s1.pop();
+    }
+    
+    public void increment(int k, int val) {
+        while(s1.size() != 0){
+            s2.push(s1.pop());
+        }
+        while((s2.size() != 0) && (k>0)){
+            s1.push(s2.pop()+val);
+            k--;
+        }
+        while(s2.size() != 0){
+            s1.push(s2.pop());
+        }
+    }
+}
