@@ -1,0 +1,28 @@
+class Solution {
+    public int findSmallestInteger(int[] nums, int value) {
+        int n = nums.length;
+        int k = value;
+
+        int[] v= new int[n];
+        for(int i=0; i<n; i++){
+            int val = (nums[i]%k+k)%k;
+            if(val<n){
+                v[val]++;
+            }
+        }
+        int ans = n;
+        for(int i=0; i<n; i++){
+            if(v[i] == 0){
+                ans =i;
+                break;
+            } else {
+                v[i]--;
+                if(v[i] >= 1 && i+k<n){
+                    v[i+k] += v[i];
+                    v[i]=0;
+                }
+            }
+        }
+        return ans;
+    }
+}
