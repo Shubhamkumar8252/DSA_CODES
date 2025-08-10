@@ -1,0 +1,39 @@
+class Solution {
+
+    public static boolean dfs(List<List<Integer>> adj, boolean stack[], boolean vis[], int i){
+        if(stack[i] == true){
+            return true;
+        }
+        if(vis[i] == true){
+            return false;
+        }
+        stack[i] = true;
+        vis[i] = true;
+
+        for(int n : adj.get(i)){
+            if(dfs(adj, stack, vis, n)){
+                return true;
+            }
+        }
+        stack[i]=false;
+        return false;
+
+    }
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> adj = new ArrayList<>();
+        for(int i=0; i<numCourses; i++){
+            adj.add(new ArrayList<>());
+        }
+        for(int arr[]: prerequisites){
+            adj.get(arr[0]).add(arr[1]);
+        }
+
+        boolean stack[] = new boolean[numCourses];
+        boolean vis[] = new boolean[numCourses];
+        for(int i=0; i<numCourses; i++){
+            if(dfs(adj, stack, vis, i))
+            return false;
+        }
+        return true;
+    }
+}
