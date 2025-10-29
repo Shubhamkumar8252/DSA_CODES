@@ -1,0 +1,22 @@
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+        int n = s.length();
+        StringBuilder res = new StringBuilder();
+        for(int k=0; k<n; k++){
+            res.append('0');
+        }
+
+        int i=0;
+        for(char ch : s.toCharArray()){
+            if(ch == '1'){
+                if(res.charAt(n-1) == '1'){
+                    res.setCharAt(i, '1');
+                    i++;
+                }else{
+                    res.setCharAt(n-1, '1');
+                }
+            }
+        }
+        return res.toString();
+    }
+}
