@@ -18,3 +18,28 @@ class Solution {
         return res;
     }
 }
+
+Apparoch 2
+
+class Solution {
+    public int longestPalindrome(String s) {
+        int n = s.length();
+        int res = 0;
+        int oddFreq = 0;
+
+        Map<Character, Integer> mp = new HashMap<>();
+        for(char ch : s.toCharArray()){
+            mp.put(ch, mp.getOrDefault(ch, 0)+1);
+
+            if(mp.get(ch) % 2 != 0){
+                oddFreq++;
+            }else{
+                oddFreq--;
+            }
+        }
+        if(oddFreq > 0){
+            return n - oddFreq + 1;
+        }
+        return n;
+    }
+}
